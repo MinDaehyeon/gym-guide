@@ -135,14 +135,6 @@
   .sets-sm{margin-left:auto}
   .sets-sm .set{width:30px;height:30px;font-size:11px}
 
-  /* 홈 서브탭 */
-  .subtabs{display:flex;gap:8px;margin:4px 0 16px}
-  .subtab{flex:1;border:1px solid var(--line);border-radius:9999px;background:transparent;
-    color:var(--muted);padding:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
-  .subtab.on{background:var(--iris);border-color:var(--iris);color:#fff}
-  .hpane{display:none}
-  .hpane.on{display:block}
-
   /* 달력 */
   .cal-head{display:flex;align-items:center;justify-content:space-between;margin:6px 2px 14px}
   .cal-title{font-size:22px;font-weight:400;letter-spacing:-.02em}
@@ -169,6 +161,13 @@
   .stat{background:var(--surface);border:none;border-radius:24px;padding:18px 20px}
   .stat-num{font-size:28px;font-weight:400;letter-spacing:-.02em;color:var(--ink)}
   .stat-lbl{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+  /* 짐/홈 버전 토글 */
+  .modes{display:flex;gap:3px;padding:3px;border:1px solid var(--line);border-radius:9999px;margin:16px 0 4px;max-width:280px}
+  .modebtn{flex:1;border:none;border-radius:9999px;background:transparent;color:var(--muted);
+    padding:9px 0;font-size:13px;font-weight:600;letter-spacing:.02em;cursor:pointer;font-family:inherit;transition:color .15s ease}
+  .modebtn.on{background:var(--iris);color:#fff}
+  body[data-mode="gym"] .mode-home{display:none}
+  body[data-mode="home"] .mode-gym{display:none}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -177,8 +176,12 @@
 <header>
   <div class="eyebrow">Dawn Routine</div>
   <h1>새벽 루틴</h1>
-  <div class="sub" style="margin-bottom:16px">대현's 헬스 가이드 · 교정 중심 3분할</div>
-  <a class="yt" href="https://www.youtube.com/watch_videos?video_ids=MthlYe3UHn8,QRGD92Wxb0Q,28ZjFTlC-28,c6P-0b0Yto0,nhozTBa_SAc,P-B0gAzF7CI,AX5jpPooP1E,5xGjlC1qmnQ,fai7ppeU1do,YeQDG8uUE3M,Q67loxS-sOE,kdZdVDgEQqg,Kh8m1dA285I,J8SYoYG4jG0,o0RrsRC47RY,9jxJPcOXwmk,1HhMAvo9zTg,B5443I8N3Hc,fINd7XyZLSc,OaXU_lYdoOM,Mah-DESuEIA" target="_blank">전체 자세 영상 재생목록 (21편)</a>
+  <div class="sub">대현's 헬스 가이드 · 교정 중심 3분할</div>
+  <div class="modes">
+    <button class="modebtn on" data-m="gym">짐 버전</button>
+    <button class="modebtn" data-m="home">홈 버전</button>
+  </div>
+  <a class="yt" style="margin-top:12px" href="https://www.youtube.com/watch_videos?video_ids=MthlYe3UHn8,QRGD92Wxb0Q,28ZjFTlC-28,c6P-0b0Yto0,nhozTBa_SAc,P-B0gAzF7CI,AX5jpPooP1E,5xGjlC1qmnQ,fai7ppeU1do,YeQDG8uUE3M,Q67loxS-sOE,kdZdVDgEQqg,Kh8m1dA285I,J8SYoYG4jG0,o0RrsRC47RY,9jxJPcOXwmk,1HhMAvo9zTg,B5443I8N3Hc,fINd7XyZLSc,OaXU_lYdoOM,Mah-DESuEIA" target="_blank">전체 자세 영상 재생목록 (21편)</a>
 </header>
 
 <nav>
@@ -187,7 +190,7 @@
   <button class="tab" data-t="b">B 등·후면</button>
   <button class="tab" data-t="c">C 가슴·어깨·팔</button>
   <button class="tab" data-t="core">코어 10분</button>
-  <button class="tab" data-t="home">홈</button>
+  <button class="tab" data-t="home">미니</button>
   <button class="tab" data-t="cal">달력</button>
   <button class="tab" data-t="plan">진행표</button>
 </nav>
@@ -196,6 +199,7 @@
 
 <!-- 웜업 -->
 <section id="warm" class="on">
+<div class="mode-gym">
   <div class="daytitle">공통 웜업 · 10분</div>
   <div class="daynote">매 세션 시작. 여기가 교정의 절반이야. 종목명을 탭하면 자세 포인트가 펼쳐져.</div>
 
@@ -215,13 +219,32 @@
 <tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>친턱 (턱 당기기)</td><td class="xt-vol">10회</td></tr>
 <tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/c6P-0b0Yto0" target="_blank">영상</a></div></td></tr>
 <tr class="xt-cue"><td colspan="2">턱을 뒤로 수평으로 밀어넣기 2초 유지. 고개 숙이기 아님. 영상은 누워서 하는 버전, 헬스장에선 벽에 등 대고 서서.</td></tr></table>
+</div>
 
+<div class="mode-home">
+  <div class="daytitle">홈 웜업 · 8분</div>
+  <div class="daynote">출장·명절 등 헬스장을 못 가는 날의 대체 세션. 그날 순서였던 Day를 홈 버전으로 진행하고, 코어 피니셔는 코어 탭 그대로(전부 매트 운동). 달력엔 해당 Day(A/B/C)로 기록.</div>
+  <table class="xt"><tr><th>종목</th><th>세트×회수</th></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>제자리 행진 / 계단 오르내리기</td><td class="xt-vol">3분</td></tr>
+
+<tr class="xt-cue"><td colspan="2">몸에 열 올리기 (트레드밀 대체).</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>장요근 스트레칭</td><td class="xt-vol">좌우 30초</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/watch?v=MthlYe3UHn8" target="_blank">영상</a></div></td></tr>
+<tr class="xt-cue"><td colspan="2">뒷발을 소파·의자에 올린 런지 자세. 엉덩이 힘 준 채 골반 앞으로, 골반 돌아가지 않게.</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>캣카우 → 데드버그</td><td class="xt-vol">10회 → 좌우 8회</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/QRGD92Wxb0Q" target="_blank">영상</a></div></td></tr>
+<tr class="xt-cue"><td colspan="2">캣카우 후 데드버그. 허리는 바닥에.</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>친턱</td><td class="xt-vol">10회</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/c6P-0b0Yto0" target="_blank">영상</a></div></td></tr>
+<tr class="xt-cue"><td colspan="2">벽에 등 대고. 정수리 위로 + 턱 뒤로.</td></tr></table>
+</div>
 </section>
 
 <!-- DAY A -->
 <section id="a">
   <div class="daytitle">Day A — 하체 · 둔근</div>
   <div class="daynote">전방골반경사 교정 메인 데이. 둔근·햄스트링이 골반을 뒤에서 잡아준다.</div>
+<div class="mode-gym">
 <a class="yt" style="margin-bottom:12px" href="https://www.youtube.com/watch_videos?video_ids=MthlYe3UHn8,QRGD92Wxb0Q,28ZjFTlC-28,c6P-0b0Yto0,nhozTBa_SAc,P-B0gAzF7CI,AX5jpPooP1E,5xGjlC1qmnQ,fINd7XyZLSc,OaXU_lYdoOM,Mah-DESuEIA" target="_blank">오늘 세션 재생목록 (웜업+A+코어)</a>
 <table class="xt"><tr><th>종목</th><th>세트×회수</th></tr>
 <tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>고블릿 스쿼트 (덤벨)</td><td class="xt-vol">3 × 10</td></tr>
@@ -237,12 +260,32 @@
 <tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/5xGjlC1qmnQ" target="_blank">영상</a><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
 <tr class="xt-cue"><td colspan="2">햄스트링 강화 = 골반을 뒤에서 당겨주는 근육. 반동 없이 천천히.</td></tr></table>
 <div class="tip"><b>마무리 → 코어 10분 탭으로 이동.</b> 시간 남으면 트레드밀 경사 걷기 10분 추가 (선택).</div>
+</div>
+
+<div class="mode-home">
+<table class="xt"><tr><th>종목</th><th>세트×회수</th></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>고블릿 스쿼트 (덤벨)</td><td class="xt-vol">3 × 12~15</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/nhozTBa_SAc" target="_blank">영상</a><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">헬스장과 동일. 무게가 부족하면 <b>3초 천천히 내려가는 템포</b>로 강도 보완.</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>덤벨 힙쓰러스트 (등을 소파에)</td><td class="xt-vol">3 × 15</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">스미스 힙쓰러스트 대체. 덤벨을 골반에 얹고 엉덩이로 밀어올리기. 꼭대기에서 엉덩이 꽉.</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>덤벨 RDL (양손, 가볍게)</td><td class="xt-vol">3 × 12</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">레그프레스+레그컬 대체. 엉덩이를 뒤로 빼며 힌지. <b>햄스트링 느낌이 정답, 허리 느낌이면 즉시 중단.</b></td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>카프레이즈 (덤벨 들고)</td><td class="xt-vol">2 × 20</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">보너스 종아리. 벽 짚고 균형.</td></tr></table>
+<div class="tip"><b>마무리 → 코어 10분.</b></div>
+<div class="tip"><b>한계 인지:</b> 덤벨 무게 한계로 하체는 헬스장보다 성장이 느림 — 템포(3초 하강)와 15~20회로 보완. 홈 버전이 2주 이상 이어질 상황이면 말해줘, 구성 자체를 다시 짜야 함.</div>
+</div>
 </section>
 
 <!-- DAY B -->
 <section id="b">
   <div class="daytitle">Day B — 등 · 후면</div>
   <div class="daynote">라운드숄더·거북목 교정 메인 데이. 당기기 볼륨이 밀기보다 많아야 한다.</div>
+<div class="mode-gym">
 <a class="yt" style="margin-bottom:12px" href="https://www.youtube.com/watch_videos?video_ids=MthlYe3UHn8,QRGD92Wxb0Q,28ZjFTlC-28,c6P-0b0Yto0,fai7ppeU1do,YeQDG8uUE3M,Q67loxS-sOE,kdZdVDgEQqg,Kh8m1dA285I,fINd7XyZLSc,OaXU_lYdoOM,Mah-DESuEIA" target="_blank">오늘 세션 재생목록 (웜업+B+코어)</a>
 <table class="xt"><tr><th>종목</th><th>세트×회수</th></tr>
 <tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>랫풀다운</td><td class="xt-vol">3 × 10~12</td></tr>
@@ -261,12 +304,34 @@
 <tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/Kh8m1dA285I" target="_blank">영상</a><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button><button class="set">4</button></div></div></td></tr>
 <tr class="xt-cue"><td colspan="2">팔꿈치 고정, 반동 없이. 컬 2세트 후 해머컬 2세트.</td></tr></table>
 <div class="tip"><b>마무리 → 코어 10분.</b></div>
+</div>
+
+<div class="mode-home">
+<table class="xt"><tr><th>종목</th><th>세트×회수</th></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>풀업 진행단계</td><td class="xt-vol">3세트</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">데드행 30초 → 여유로워지면 네거티브 3~5회. 랫풀다운 대체. 어깨 으쓱 금지.</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>투암 벤트오버 덤벨 로우</td><td class="xt-vol">3 × 12</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">시티드로우 대체. <b>양손 동시(편측 금지)</b>, 무릎 굽히고 등 평평하게, 가볍게. 허리 느낌 나면 중단.</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>프론 Y-레이즈</td><td class="xt-vol">3 × 12</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">매트에 엎드려 팔을 Y자로 들어올리기. 페이스풀 대체 — 라운드숄더 교정. 엄지가 하늘 방향.</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>리버스 스노우엔젤</td><td class="xt-vol">2 × 10</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">엎드려 팔을 머리 위→엉덩이 옆으로 반원 그리기. 리버스 펙덱 대체. 팔은 바닥에서 띄운 채.</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>덤벨 컬 + 해머컬</td><td class="xt-vol">각 2 × 12</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button><button class="set">4</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">헬스장과 동일. 팔꿈치 고정, 반동 없이.</td></tr></table>
+<div class="tip"><b>마무리 → 코어 10분.</b></div>
+</div>
 </section>
 
 <!-- DAY C -->
 <section id="c">
   <div class="daytitle">Day C — 가슴 · 어깨 · 팔</div>
   <div class="daynote">상체 근육 데이. 끝나고 반드시 가슴 스트레칭 + 페이스풀로 어깨 리셋.</div>
+<div class="mode-gym">
 <a class="yt" style="margin-bottom:12px" href="https://www.youtube.com/watch_videos?video_ids=MthlYe3UHn8,QRGD92Wxb0Q,28ZjFTlC-28,c6P-0b0Yto0,J8SYoYG4jG0,o0RrsRC47RY,9jxJPcOXwmk,1HhMAvo9zTg,B5443I8N3Hc,fINd7XyZLSc,OaXU_lYdoOM,Mah-DESuEIA" target="_blank">오늘 세션 재생목록 (웜업+C+코어)</a>
 <table class="xt"><tr><th>종목</th><th>세트×회수</th></tr>
 <tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>머신 체스트프레스</td><td class="xt-vol">3 × 10</td></tr>
@@ -288,6 +353,30 @@
 <tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/Q67loxS-sOE" target="_blank">영상</a><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button></div></div></td></tr>
 <tr class="xt-cue"><td colspan="2">문틀·랙 기둥 잡고 가슴 앞 늘리기 → 아주 가벼운 페이스풀. 밀기 후 어깨 리셋 절차.</td></tr></table>
 <div class="tip"><b>마무리 → 코어 10분.</b></div>
+</div>
+
+<div class="mode-home">
+<table class="xt"><tr><th>종목</th><th>세트×회수</th></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>푸시업 (푸시업바)</td><td class="xt-vol">3 × 최대의 80%</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">체스트프레스 대체. 푸시업바로 가동범위 깊게, <b>몸 일직선 필수 — 허리 처지면 중단.</b></td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>발 올린 푸시업 (발을 소파에)</td><td class="xt-vol">2 × 가능 개수</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">인클라인 프레스 대체(윗가슴). 코어 요구량 높음 — 허리 처지면 생략하고 기본 푸시업 볼륨 추가.</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>파이크 푸시업</td><td class="xt-vol">2 × 8~10</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">숄더프레스 대체. 엉덩이 들어 ㅅ자 → 머리를 바닥 쪽으로. 서서 하는 덤벨프레스보다 허리 안전.</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>사이드 레터럴 레이즈 (덤벨)</td><td class="xt-vol">3 × 15</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/1HhMAvo9zTg" target="_blank">영상</a><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">헬스장과 동일. 어깨 으쓱 금지.</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>다이아몬드 푸시업 / 덤벨 오버헤드 익스텐션(양손)</td><td class="xt-vol">2 × 10~12</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">푸시다운 대체(삼두). 둘 중 하나 선택.</td></tr>
+<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>가슴 스트레칭 + 프론 Y 가볍게</td><td class="xt-vol">30초 + 1 × 12</td></tr>
+<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button></div></div></td></tr>
+<tr class="xt-cue"><td colspan="2">문틀 잡고 가슴 앞 늘리기 → 가벼운 Y-레이즈. 밀기 후 어깨 리셋.</td></tr></table>
+<div class="tip"><b>마무리 → 코어 10분.</b></div>
+</div>
 </section>
 
 <!-- 코어 -->
@@ -314,15 +403,8 @@
 
 <!-- 홈 루틴 -->
 <section id="home">
-  <div class="daytitle">집 운동</div>
-  <div class="daynote">장비: 푸시업바 · 매트 · 덤벨 · 풀업바</div>
-  <div class="subtabs">
-    <button class="subtab on" data-h="hmini">미니 (헬스 병행용)</button>
-    <button class="subtab" data-h="hfull">풀버전 (헬스장 대체용)</button>
-  </div>
-
-  <div id="hmini" class="hpane on">
-    <div class="daynote">헬스장 안 가는 날 10~15분, 주 2회까지. "몸 풀었다" 느낌이면 적정, "운동했다" 느낌이면 과함. 일요일 완전 휴식.</div>
+  <div class="daytitle">미니 루틴 · 헬스 병행용</div>
+  <div class="daynote">장비: 푸시업바 · 매트 · 덤벨 · 풀업바 — 헬스장 안 가는 날 10~15분, 주 2회까지. "몸 풀었다" 느낌이면 적정, "운동했다" 느낌이면 과함. 일요일 완전 휴식.</div>
     <table class="xt"><tr><th>종목</th><th>세트×회수</th></tr>
 <tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>친턱 + 목 뒤 늘리기</td><td class="xt-vol">10회 + 20초</td></tr>
 <tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/c6P-0b0Yto0" target="_blank">영상</a><div class="sets sets-sm"><button class="set">1</button></div></div></td></tr>
@@ -337,78 +419,6 @@
 <tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button></div></div></td></tr>
 <tr class="xt-cue"><td colspan="2">누워 무릎 세우고 덤벨을 골반에 얹은 뒤 엉덩이로 밀어올리기. 꼭대기에서 엉덩이 꽉, 허리 꺾기 금지.</td></tr></table>
     <div class="warn"><b>집에서 덤벨 프레스류(가슴·어깨 밀기) 추가 금지.</b> 당기기:밀기 균형이 깨져 라운드숄더 교정에 역행. 다음날 헬스장 중량이 안 나오면 집 운동을 줄일 것.</div>
-  </div>
-
-  <div id="hfull" class="hpane">
-    <div class="daynote">출장·명절 등 헬스장을 못 가는 날의 대체 세션. 그날 순서였던 Day를 홈 버전으로 진행하고, 코어 피니셔는 코어 탭 그대로(전부 매트 운동). 달력엔 해당 Day(A/B/C)로 기록.</div>
-
-    <div class="daytitle" style="font-size:16px">웜업 · 8분</div>
-    <table class="xt"><tr><th>종목</th><th>세트×회수</th></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>제자리 행진 / 계단 오르내리기</td><td class="xt-vol">3분</td></tr>
-
-<tr class="xt-cue"><td colspan="2">몸에 열 올리기 (트레드밀 대체).</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>장요근 스트레칭</td><td class="xt-vol">좌우 30초</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/watch?v=MthlYe3UHn8" target="_blank">영상</a></div></td></tr>
-<tr class="xt-cue"><td colspan="2">뒷발을 소파·의자에 올린 런지 자세. 엉덩이 힘 준 채 골반 앞으로, 골반 돌아가지 않게.</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>캣카우 → 데드버그</td><td class="xt-vol">10회 → 좌우 8회</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/QRGD92Wxb0Q" target="_blank">영상</a></div></td></tr>
-<tr class="xt-cue"><td colspan="2">캣카우 후 데드버그. 허리는 바닥에.</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>친턱</td><td class="xt-vol">10회</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/c6P-0b0Yto0" target="_blank">영상</a></div></td></tr>
-<tr class="xt-cue"><td colspan="2">벽에 등 대고. 정수리 위로 + 턱 뒤로.</td></tr></table>
-    <div class="daytitle" style="font-size:16px;margin-top:16px">Day A — 하체·둔근</div>
-    <table class="xt"><tr><th>종목</th><th>세트×회수</th></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>고블릿 스쿼트 (덤벨)</td><td class="xt-vol">3 × 12~15</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/nhozTBa_SAc" target="_blank">영상</a><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">헬스장과 동일. 무게가 부족하면 <b>3초 천천히 내려가는 템포</b>로 강도 보완.</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>덤벨 힙쓰러스트 (등을 소파에)</td><td class="xt-vol">3 × 15</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">스미스 힙쓰러스트 대체. 덤벨을 골반에 얹고 엉덩이로 밀어올리기. 꼭대기에서 엉덩이 꽉.</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>덤벨 RDL (양손, 가볍게)</td><td class="xt-vol">3 × 12</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">레그프레스+레그컬 대체. 엉덩이를 뒤로 빼며 힌지. <b>햄스트링 느낌이 정답, 허리 느낌이면 즉시 중단.</b></td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>카프레이즈 (덤벨 들고)</td><td class="xt-vol">2 × 20</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">보너스 종아리. 벽 짚고 균형.</td></tr></table>
-    <div class="daytitle" style="font-size:16px;margin-top:16px">Day B — 등·후면</div>
-    <table class="xt"><tr><th>종목</th><th>세트×회수</th></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>풀업 진행단계</td><td class="xt-vol">3세트</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">데드행 30초 → 여유로워지면 네거티브 3~5회. 랫풀다운 대체. 어깨 으쓱 금지.</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>투암 벤트오버 덤벨 로우</td><td class="xt-vol">3 × 12</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">시티드로우 대체. <b>양손 동시(편측 금지)</b>, 무릎 굽히고 등 평평하게, 가볍게. 허리 느낌 나면 중단.</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>프론 Y-레이즈</td><td class="xt-vol">3 × 12</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">매트에 엎드려 팔을 Y자로 들어올리기. 페이스풀 대체 — 라운드숄더 교정. 엄지가 하늘 방향.</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>리버스 스노우엔젤</td><td class="xt-vol">2 × 10</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">엎드려 팔을 머리 위→엉덩이 옆으로 반원 그리기. 리버스 펙덱 대체. 팔은 바닥에서 띄운 채.</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>덤벨 컬 + 해머컬</td><td class="xt-vol">각 2 × 12</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button><button class="set">4</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">헬스장과 동일. 팔꿈치 고정, 반동 없이.</td></tr></table>
-    <div class="daytitle" style="font-size:16px;margin-top:16px">Day C — 가슴·어깨·팔</div>
-    <table class="xt"><tr><th>종목</th><th>세트×회수</th></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>푸시업 (푸시업바)</td><td class="xt-vol">3 × 최대의 80%</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">체스트프레스 대체. 푸시업바로 가동범위 깊게, <b>몸 일직선 필수 — 허리 처지면 중단.</b></td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>발 올린 푸시업 (발을 소파에)</td><td class="xt-vol">2 × 가능 개수</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">인클라인 프레스 대체(윗가슴). 코어 요구량 높음 — 허리 처지면 생략하고 기본 푸시업 볼륨 추가.</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>파이크 푸시업</td><td class="xt-vol">2 × 8~10</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">숄더프레스 대체. 엉덩이 들어 ㅅ자 → 머리를 바닥 쪽으로. 서서 하는 덤벨프레스보다 허리 안전.</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>사이드 레터럴 레이즈 (덤벨)</td><td class="xt-vol">3 × 15</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><a class="yt yt-sm" href="https://www.youtube.com/shorts/1HhMAvo9zTg" target="_blank">영상</a><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button><button class="set">3</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">헬스장과 동일. 어깨 으쓱 금지.</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>다이아몬드 푸시업 / 덤벨 오버헤드 익스텐션(양손)</td><td class="xt-vol">2 × 10~12</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button><button class="set">2</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">푸시다운 대체(삼두). 둘 중 하나 선택.</td></tr>
-<tr class="xt-main"><td class="xt-name"><span class="caret">▸</span>가슴 스트레칭 + 프론 Y 가볍게</td><td class="xt-vol">30초 + 1 × 12</td></tr>
-<tr class="xt-actrow"><td colspan="2"><div class="xt-act"><div class="sets sets-sm"><button class="set">1</button></div></div></td></tr>
-<tr class="xt-cue"><td colspan="2">문틀 잡고 가슴 앞 늘리기 → 가벼운 Y-레이즈. 밀기 후 어깨 리셋.</td></tr></table>
-    <div class="tip"><b>한계 인지:</b> 덤벨 무게 한계로 하체는 헬스장보다 성장이 느림 — 템포(3초 하강)와 15~20회로 보완. 홈 풀버전이 2주 이상 이어질 상황이면 말해줘, 구성 자체를 다시 짜야 함.</div>
-  </div>
 </section>
 
 
@@ -571,11 +581,18 @@
       '<div class="stat" style="grid-column:1/-1"><div class="stat-num" style="font-size:16px">A '+cnt.A+' · B '+cnt.B+' · C '+cnt.C+'</div><div class="stat-lbl">누적 루틴 분포 — 셋이 비슷해야 균형이 맞음</div></div>';
   }
 
-  document.querySelectorAll('.subtab').forEach(t=>t.addEventListener('click',()=>{
-    document.querySelectorAll('.subtab').forEach(x=>x.classList.remove('on'));
-    document.querySelectorAll('.hpane').forEach(x=>x.classList.remove('on'));
-    t.classList.add('on');document.getElementById(t.dataset.h).classList.add('on');
-  }));
+  /* 짐/홈 버전 토글 — 선택은 저장되어 다음에 열어도 유지 */
+  const MODE_KEY='workout-mode-v1';
+  const modeBtns=document.querySelectorAll('.modebtn');
+  function setMode(m){
+    document.body.dataset.mode=m;
+    modeBtns.forEach(b=>b.classList.toggle('on',b.dataset.m===m));
+    try{localStorage.setItem(MODE_KEY,m);}catch(e){}
+  }
+  modeBtns.forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.m)));
+  let savedMode='gym';
+  try{savedMode=localStorage.getItem(MODE_KEY)||'gym';}catch(e){}
+  setMode(savedMode);
   document.getElementById('calPrev').addEventListener('click',()=>{view.setMonth(view.getMonth()-1);render();});
   document.getElementById('calNext').addEventListener('click',()=>{view.setMonth(view.getMonth()+1);render();});
   loadLog();
