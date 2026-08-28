@@ -139,6 +139,10 @@
   .cue-b.bad .cue-t{color:var(--amber);background:rgba(255,184,41,.12)}
   .cue-b.ok .cue-t{color:#3fbf9f;background:rgba(21,132,110,.16)}
   .cue-b.note .cue-t{color:var(--muted);background:rgba(255,255,255,.06)}
+  .dmin{float:right;font-size:11px;font-weight:400;color:var(--muted)}
+  .daycard.istoday{box-shadow:inset 0 0 0 1.5px var(--iris)}
+  .todaytag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.08em;
+    background:var(--iris);color:#fff;border-radius:9999px;padding:2px 9px;margin-left:8px;vertical-align:2px}
   .xt .xt-cue{display:none}
   .xt .xt-cue.show{display:table-row}
   .xt-act{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -196,7 +200,8 @@
 </header>
 
 <nav>
-  <button class="tab on" data-t="am">아침 15분</button>
+  <button class="tab on" data-t="week">요일별</button>
+  <button class="tab" data-t="am">아침 15분</button>
   <button class="tab" data-t="warm">웜업</button>
   <button class="tab" data-t="a">A 하체·둔근</button>
   <button class="tab" data-t="b">B 등·후면</button>
@@ -209,8 +214,85 @@
 
 <main>
 
+<!-- 요일별 실행표 -->
+<section id="week" class="on">
+  <div class="daytitle">요일별 실행표</div>
+  <div class="daynote">위에서부터 순서대로 하면 된다. 종목 이름을 모르겠으면 해당 탭(웜업·A·B·C·코어)에서 자세 설명과 영상을 볼 수 있다.</div>
+
+  <div class="tip" style="margin-bottom:14px"><b>매일 (요일 무관)</b><br>기상 직후 <b>아침 교정 15~18분</b> — 이게 1순위. 바쁜 날은 <b>7분 코스</b>(호흡·캣카우·목강화·장요근·벽힌지·데드버그)라도.</div>
+
+  <div class="ex daycard" data-day="1">
+    <div class="ex-name" style="margin-bottom:8px">월 · Day A — 하체 · 둔근 <span class="dmin">60분</span></div>
+    <div class="ex-cue">
+      <div class="cue-b"><span class="cue-t">웜업 10분</span>트레드밀 5분 → 폼롤러 흉추 1~2분 → 캣카우 10회 → 데드버그 좌우 8회 → 친턱 10회 → <b>봉 힙힌지 10회</b></div>
+      <div class="cue-b"><span class="cue-t">본운동 40분</span>고블릿 스쿼트 3×10 → 힙쓰러스트 3×12 → 레그프레스 3×12 → 레그컬 3×12</div>
+      <div class="cue-b"><span class="cue-t">코어 10분</span>팔로프 프레스 좌우 3×10 → 수트케이스 캐리 좌우 2~3회</div>
+      <div class="cue-b"><span class="cue-t">유산소</span>계단 <b>10~15분만</b> (다리를 이미 썼으니 짧게) 또는 생략</div>
+      <div class="cue-b bad"><span class="cue-t">오늘 핵심</span>스쿼트·힙쓰러스트 <b>맨 위에서 허리 젖히지 않기.</b> 갈비 내린 채 엉덩이로 마무리. 손목은 거의 안 쓰는 날이라 결절종 쉬어가기 좋다.</div>
+    </div>
+  </div>
+
+  <div class="ex daycard" data-day="2">
+    <div class="ex-name" style="margin-bottom:8px">화 · 수영 <span class="dmin">60분</span></div>
+    <div class="ex-cue">
+      <div class="cue-b"><span class="cue-t">입수 전 5분</span>캣카우 10회 → 오픈북 좌우 8회 → 월엔젤 10회 (어깨·흉추 준비)</div>
+      <div class="cue-b"><span class="cue-t">수영 40~50분</span><b>자유형 위주 + 배영 섞기.</b> 평영은 짧게(허리 젖힘 반복이라 양 조절)</div>
+      <div class="cue-b"><span class="cue-t">마무리</span>가슴 스트레칭 30초 + 친턱 10회</div>
+      <div class="cue-b bad"><span class="cue-t">오늘 핵심</span>자유형 <b>숨 쉴 때 고개를 들지 말고 몸통을 굴려서</b> — 고개만 드는 습관은 거북목을 키운다. 그 롤링이 흉추에서 나오니 아침 오픈북이 그대로 수영 실력이 된다.</div>
+    </div>
+  </div>
+
+  <div class="ex daycard" data-day="3">
+    <div class="ex-name" style="margin-bottom:8px">수 · Day B — 등 · 후면 <span class="dmin">60분</span></div>
+    <div class="ex-cue">
+      <div class="cue-b"><span class="cue-t">웜업 10분</span>트레드밀 5분 → 폼롤러 흉추 1~2분 → 캣카우 10회 → 데드버그 좌우 8회 → 친턱 10회</div>
+      <div class="cue-b"><span class="cue-t">본운동 40분</span>랫풀다운 3×10~12 → 시티드 케이블 로우 3×12 → 페이스풀 3×15 → 리버스 펙덱 3×15 → 덤벨 컬+해머컬 각 2×12</div>
+      <div class="cue-b"><span class="cue-t">코어 10분</span>캡틴체어 니레이즈 3×8~10 → 케이블 크런치 3×12</div>
+      <div class="cue-b"><span class="cue-t">유산소</span>계단 20~25분</div>
+      <div class="cue-b bad"><span class="cue-t">오늘 핵심</span>당기기는 전부 <b>약지·새끼에 힘 싣고 겨드랑이로</b> 당긴다. <b>어깨 으쓱 금지</b> — 승모가 일하면 버섯목이 심해진다. 이 날이 라운드숄더·거북목 교정 메인.</div>
+    </div>
+  </div>
+
+  <div class="ex daycard" data-day="4">
+    <div class="ex-name" style="margin-bottom:8px">목 · 수영 <span class="dmin">60분</span></div>
+    <div class="ex-cue">
+      <div class="cue-b"><span class="cue-t">입수 전 5분</span>캣카우 10회 → 오픈북 좌우 8회 → 월엔젤 10회</div>
+      <div class="cue-b"><span class="cue-t">수영 40~50분</span><b>배영 비중을 화요일보다 높게.</b> 가슴을 펴고 등을 쓰는 자세라 굽은등·라운드숄더에 정면으로 좋다</div>
+      <div class="cue-b"><span class="cue-t">마무리</span>가슴 스트레칭 30초 + 친턱 10회</div>
+      <div class="cue-b bad"><span class="cue-t">오늘 핵심</span>속도보다 <b>스트로크당 거리</b>. 팔로만 젓지 말고 몸통 회전으로 밀고 나가는 감각을 찾는다.</div>
+    </div>
+  </div>
+
+  <div class="ex daycard" data-day="5">
+    <div class="ex-name" style="margin-bottom:8px">금 · Day C — 가슴 · 어깨 · 팔 <span class="dmin">60분</span></div>
+    <div class="ex-cue">
+      <div class="cue-b"><span class="cue-t">웜업 10분</span>트레드밀 5분 → 폼롤러 흉추 1~2분 → 캣카우 10회 → 데드버그 좌우 8회 → 친턱 10회</div>
+      <div class="cue-b"><span class="cue-t">본운동 40분</span>머신 체스트프레스 3×10 → 인클라인 덤벨 프레스 3×10 → 랜드마인 프레스 좌우 3×10 → 사이드 레터럴 레이즈 3×15 → 케이블 푸시다운 3×12 → 가슴 스트레칭 + 가벼운 페이스풀</div>
+      <div class="cue-b"><span class="cue-t">코어 10분</span>팔로프 프레스 좌우 3×10 → 수트케이스 캐리 좌우 2~3회</div>
+      <div class="cue-b"><span class="cue-t">유산소</span>계단 20~25분</div>
+      <div class="cue-b bad"><span class="cue-t">오늘 핵심</span>미는 날이라 <b>손목 결절종에 가장 부담이 큰 날.</b> 손목이 팔꿈치 바로 위 수직인지 매 세트 확인하고, 아프면 프레스류를 빼고 사이드 레터럴·푸시다운만. <b>머리 위로 곧게 미는 오버헤드 프레스는 금지</b>(허리 젖힘) — 랜드마인으로.</div>
+    </div>
+  </div>
+
+  <div class="ex daycard" data-day="6">
+    <div class="ex-name" style="margin-bottom:8px">토 · 선택 <span class="dmin">0~30분</span></div>
+    <div class="ex-cue">
+      <div class="cue-b"><span class="cue-t">셋 중 하나</span>① 미니 루틴 10~15분 (미니 탭) ② 가벼운 유산소 20~30분 (산책·자전거) ③ 완전 휴식</div>
+      <div class="cue-b ok"><span class="cue-t">판단 기준</span>월~금이 잘 굴러갔으면 <b>쉬는 게 맞다.</b> 몸이 개운하고 근육통이 없으면 ①이나 ②. 피곤하면 아침 교정 15분만 하고 끝.</div>
+    </div>
+  </div>
+
+  <div class="ex daycard" data-day="0">
+    <div class="ex-name" style="margin-bottom:8px">일 · 완전 휴식</div>
+    <div class="ex-cue">
+      <div class="cue-b"><span class="cue-t">할 것</span>아침 교정 15~18분만. 그 외에는 아무것도.</div>
+      <div class="cue-b ok"><span class="cue-t">왜</span>근육은 운동할 때가 아니라 <b>쉴 때 자란다.</b> 교정도 마찬가지 — 하루는 완전히 비워야 다음 주가 굴러간다.</div>
+    </div>
+  </div>
+</section>
+
 <!-- 아침 교정 15분 -->
-<section id="am" class="on">
+<section id="am">
   <div class="daytitle">아침 교정 루틴 · 15~18분</div>
   <div class="daynote" style="margin-bottom:6px"><b>세 가지 분리 훈련이 이 루틴의 전부다:</b> ② 등↔허리 · ⑦ 고관절↔허리 · ⑨ 팔다리↔허리. 전부 <b>"허리는 가만히, 다른 데가 움직인다"</b>는 같은 숙제다.</div>
   <div class="daynote">기상 직후 매일. <b>1순위 흉추 가동 → 2순위 코어(허리 고정) → 3순위 목</b> 순서로 짜여 있다. 등이 굳어서 허리가 대신 움직이는 게 문제의 뿌리이므로, ②③으로 등을 먼저 풀고 ⑦⑧⑨로 허리를 잡는다. 장비 없이 매트 하나면 됨.</div>
@@ -683,6 +765,20 @@
       '<div class="stat"><div class="stat-num">'+streak+'주</div><div class="stat-lbl">주 3회 달성 연속</div></div>'+
       '<div class="stat" style="grid-column:1/-1"><div class="stat-num" style="font-size:16px">A '+cnt.A+' · B '+cnt.B+' · C '+cnt.C+'</div><div class="stat-lbl">누적 루틴 분포 — 셋이 비슷해야 균형이 맞음</div></div>';
   }
+
+  /* 오늘 요일 카드 표시 */
+  (function(){
+    const today=new Date().getDay();
+    const card=document.querySelector('.daycard[data-day="'+today+'"]');
+    if(card){
+      card.classList.add('istoday');
+      const n=card.querySelector('.ex-name');
+      if(n){const t=document.createElement('span');t.className='todaytag';t.textContent='오늘';n.appendChild(t);}
+      // 요일별 탭을 열면 오늘 카드로 스크롤
+      const wtab=document.querySelector('.tab[data-t="week"]');
+      if(wtab)wtab.addEventListener('click',()=>setTimeout(()=>card.scrollIntoView({block:'start',behavior:'smooth'}),60));
+    }
+  })();
 
   /* 짐/홈 버전 토글 — 선택은 저장되어 다음에 열어도 유지 */
   const MODE_KEY='workout-mode-v1';
